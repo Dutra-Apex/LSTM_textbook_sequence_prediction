@@ -19,7 +19,7 @@ def find_pdist_average(seq):
 
   return average_pdist
 
-#
+# Plot results
 good_seq_pdist = find_pdist_average(good_seq)
 plt.title('Good sequence average pdist')
 plt.xlabel('Distance value')
@@ -40,6 +40,8 @@ plt.title('Good sequences vs Bad sequences average pdist')
 plt.xlabel('Distance value')
 plt.ylabel('Sequence')
 plt.hist(bad_seq_pdist)
-good_seq_pdist = find_pdist_average(good_seq)
 plt.hist(good_seq_pdist)
 plt.show()
+
+# The graphical results shows us that the good sequences, due to its lower pdist average, 
+# are a better fit for training than randomly generated sequences
