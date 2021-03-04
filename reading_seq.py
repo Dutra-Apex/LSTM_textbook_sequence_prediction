@@ -6,6 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pickle
 
+# Loads data
 if 1:
     with open('OS_all_M_T_title.p','rb') as f:
         data = pickle.load(f)
