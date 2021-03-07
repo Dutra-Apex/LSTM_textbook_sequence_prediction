@@ -31,3 +31,12 @@ plt.scatter(range(len(results)), results, c='g')
 plt.scatter(range(len(y_test)), y_test, c='r')
 plt.show()
 
+
+# Plots the performance graph of the LSTM model
+# The lower the loss, the better
+plt.figure(figsize=(10,6))
+plt.title('Mean absolute error loss vs Epochs - Good Sequence')
+plt.ylabel('Value loss')
+plt.xlabel('Epoch')
+plt.plot(history.history['loss'])
+plt.show()
