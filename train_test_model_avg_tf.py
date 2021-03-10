@@ -1,5 +1,3 @@
-
-
 # Creates a training data with 80% of the original data
 train_data = scaled_data[0:training_data_len, :]
 bad_train_data = bad_scaled_data[0:training_data_len, :]
