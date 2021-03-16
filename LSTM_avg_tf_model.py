@@ -9,7 +9,7 @@ from keras.layers import Dense, LSTM
 import matplotlib.pyplot as plt
 plt.style.use('fivethirtyeight')
 
-# Generates a LSTM model
+#LSTM model
 model = Sequential()
 model.add(LSTM((1), batch_input_shape=(None,2,1), return_sequences=True))
 #model.add(LSTM((1), return_sequences=True))
