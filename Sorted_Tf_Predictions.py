@@ -116,3 +116,43 @@ model.add(LSTM((500), return_sequences=True))
 model.add(LSTM((500), return_sequences=False))
 model.compile(loss = 'mean_absolute_error', optimizer='adam', metrics='accuracy')
 model.summary()
+
+# Fits the x_train and y_train data into the model
+history = model.fit(x_train, y_train, batch_size = 2, epochs= 750, validation_data=(x_test,y_test))
+results = model.predict(x_test)
+
+#Function that calculates how close 2 points are 
+#Only works for points in the same line
+def euclid_dist(y_test, results):
+
+  difference = np.zeros((len(results), len(results[0])))
+
+  for i in range(len(results)):
+    for j in range(len(results[0])):
+      difference[i][j] = 100 * (1 / (1 + np.abs(results[i][j] - y_test[i][j])))
+
+  return difference
+
+ for i in range(len(results)): 
+  plt.figure(figsize=(10,6))
+  plt.title('Predicted tf-idf (green) & Actual tf-idf (red) - Section %s' % (good_seq[i + 90][2]))
+  plt.xlabel('Terms')
+  plt.ylabel('Tf-idf value')
+  plt.scatter(range(len(results[0])), results[i], c='g')
+  plt.scatter(range(len(y_test[0])), y_test[i], c='r')
+  plt.show()
+  
+  # Plots the average difference in tf-idf values in each section
+# The higher the percentage, the closer the points in that section where
+error = euclid_dist(y_test, results)
+error_avg = []
+
+for i in range(len(error)):
+  error_avg.append(np.average(error[i]))
+
+plt.figure(figsize=(10,6))
+plt.title('Average % tf-idf difference per section')
+plt.ylabel('Average % tf-idf difference')
+plt.xlabel('Section')
+plt.scatter(range(len(error_avg)), (error_avg), c='orange')
+plt.show()
