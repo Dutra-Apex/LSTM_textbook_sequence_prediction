@@ -67,3 +67,40 @@ for i in range(0, len(sorted_tf)):
   for j in range(0, len(sorted_tf[1])):
     for k in range(0, dataset.shape[2]):
       dataset[i][j][k] = sorted_tf[i][j][k]
+      
+training_data_len = math.ceil(len(dataset) * .8)
+
+#Reshapes data into a 2D aray for normalization
+dataset_2D = dataset.reshape((dataset.shape[0], dataset.shape[1]*dataset.shape[2]))
+
+#Normalizes the data
+scaler = MinMaxScaler (feature_range=(0,1))
+scaled_data = scaler.fit_transform(dataset_2D)
+
+#Returns scaled_data to oiginal 3D shape
+scaled_data = scaled_data.reshape(dataset.shape[0],dataset.shape[1],dataset.shape[2])
+
+# Creates a training data with 80% of the original data
+train_data = scaled_data[0:training_data_len, :]
+
+#Split the data into x_train and y_train:
+
+x_train = [] #Independent variable (used to predict)
+y_train = [] #Dependent variables (values that the LSTM will try to predict)
+
+for i in range(0,training_data_len):
+    x_train.append([train_data[i][0], train_data[i][1]])
+    y_train.append(train_data[i][2])
+    
+    
+# Converts training set into numpy arrays and check their shape
+x_train, y_train = np.array(x_train), np.array(y_train)
+
+# Utilizes the remaining 20% of the data for testing the model
+test_data = scaled_data[training_data_len:]
+x_test = []
+y_test = []
+
+for i in range(0,len(test_data)):
+    x_test.append([test_data[i][0], test_data[i][1]])
+    y_test.append(test_data[i][2])
