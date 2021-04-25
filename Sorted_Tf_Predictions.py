@@ -19,4 +19,28 @@ for i in range(0, len(good_seq)):
   good_seq_all_tf.append(placeholder)
   placeholder = []
 
-print(len(good_seq_all_tf[0]))
+#print(len(good_seq_all_tf[0]))
+
+#Converts into np array
+good_seq_all_tf = np.array(good_seq_all_tf)
+
+#Creates a sorted array with the highest tf-idf values
+# The sorting will happen based on the first section of wach good sequence
+sorted_tf = np.zeros((112,3,1074))
+index_list = []
+placeholder = []
+
+#Uses argsort to return the index of the highest tf-idf values
+for i in range(0, len(good_seq_all_tf)):
+  index_list.append(good_seq_all_tf[i][0].argsort()[::-1])
+  for j in range(0, len(index_list[0])):
+    sorted_tf[i][0][j] = good_seq_all_tf[i][0][index_list[0][j]]
+    sorted_tf[i][1][j] = good_seq_all_tf[i][1][index_list[0][j]]
+    sorted_tf[i][2][j] = good_seq_all_tf[i][2][index_list[0][j]]
+  index_list = []
+
+sorted_tf = np.array(sorted_tf)
+
+#print(sorted_tf[3][:2])
+
+
