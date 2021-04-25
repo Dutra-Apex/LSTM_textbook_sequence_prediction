@@ -44,3 +44,17 @@ sorted_tf = np.array(sorted_tf)
 #print(sorted_tf[3][:2])
 
 
+""" 
+# Plots the sorted tf-idf of all sections
+for i in range(len(good_seq)):
+  plt.figure(figsize=(10,6))
+  plt.title("Tf-idf value of the sorted terms")
+  plt.xlabel('Term')
+  plt.ylabel('Tf-idf value')
+  plt.plot(sorted_tf[i][0], alpha = 0.5)
+  plt.plot(sorted_tf[i][1], alpha = 0.5)
+  plt.plot(sorted_tf[i][2], alpha = 0.5)
+  plt.legend(['Section %s' % (good_seq[i][0]),'Section %s' % (good_seq[i][1]),'Section %s' % (good_seq[i][2])],loc='upper right')
+  plt.savefig(path + '/good_seq_plots/plot_%s.png' % (i))
+  plt.show()
+"""
