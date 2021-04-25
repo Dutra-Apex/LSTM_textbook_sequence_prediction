@@ -55,6 +55,15 @@ for i in range(len(good_seq)):
   plt.plot(sorted_tf[i][1], alpha = 0.5)
   plt.plot(sorted_tf[i][2], alpha = 0.5)
   plt.legend(['Section %s' % (good_seq[i][0]),'Section %s' % (good_seq[i][1]),'Section %s' % (good_seq[i][2])],loc='upper right')
-  plt.savefig(path + '/good_seq_plots/plot_%s.png' % (i))
+  #plt.savefig(path + '/good_seq_plots/plot_%s.png' % (i))
   plt.show()
 """
+
+
+# The dataset is composted of the X highest tf-idf values in the sorted_tf
+dataset = np.zeros((len(sorted_tf), len(sorted_tf[0]), 500))
+
+for i in range(0, len(sorted_tf)):
+  for j in range(0, len(sorted_tf[1])):
+    for k in range(0, dataset.shape[2]):
+      dataset[i][j][k] = sorted_tf[i][j][k]
