@@ -104,3 +104,15 @@ y_test = []
 for i in range(0,len(test_data)):
     x_test.append([test_data[i][0], test_data[i][1]])
     y_test.append(test_data[i][2])
+
+x_test, y_test = np.array(x_test), np.array(y_test)
+
+# Generates a LSTM model
+# The model will utilize the terms in the first 2 sections of each good sequence 
+# to predict the tf-idf values of the terms in the 3rd section.
+model = Sequential()
+model.add(LSTM((500), batch_input_shape=(22, 2, 500),  return_sequences=True))
+model.add(LSTM((500), return_sequences=True))
+model.add(LSTM((500), return_sequences=False))
+model.compile(loss = 'mean_absolute_error', optimizer='adam', metrics='accuracy')
+model.summary()
