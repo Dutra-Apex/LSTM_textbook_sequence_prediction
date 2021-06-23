@@ -9,6 +9,7 @@ from keras.layers import Dense, LSTM
 import matplotlib.pyplot as plt
 plt.style.use('fivethirtyeight')
 
+
 #Creates array with all the tf-idf values of the good_seq
 good_seq_all_tf = []
 placeholder = []
