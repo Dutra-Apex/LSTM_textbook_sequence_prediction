@@ -27,7 +27,7 @@ for i in range(0, len(bad_seq)):
   placeholder = []
 
 #print(len(good_seq_tf))
-#print(len(bad_seq_tf))
+
 
 #Converts into np array
 dataset = np.array(good_seq_tf)
