@@ -26,8 +26,6 @@ for i in range(0, len(bad_seq)):
   bad_seq_tf.append(placeholder)
   placeholder = []
 
-#print(len(good_seq_tf))
-
 
 #Converts into np array
 dataset = np.array(good_seq_tf)
