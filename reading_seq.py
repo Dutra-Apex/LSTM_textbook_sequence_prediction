@@ -48,3 +48,4 @@ while len(bad_seq) < num_seq:
 print("Length of bad and good sequences")
 print(len(bad_seq))
 print(len(good_seq))
+
